@@ -20,4 +20,9 @@ export const styles = StyleSheet.create({
     alignItems: 'center',
     marginHorizontal: 20,
   },
+  rounds: {
+    textAlign: 'center',
+    fontSize: 20,
+    paddingVertical: 10,
+  },
 });

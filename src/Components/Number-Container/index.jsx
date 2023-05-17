@@ -1,9 +1,8 @@
 import { Button, Text, View } from 'react-native';
 
 import { styles } from './styles';
-import { theme } from '../../Constants';
 
-const NumberContainer = ({ number, onHandleStartGame }) => {
+const NumberContainer = ({ number }) => {
   return (
     <View style={styles.container}>
       <Text style={styles.number}>{number}</Text>

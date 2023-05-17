@@ -2,10 +2,10 @@ import { useState } from 'react';
 import { Alert, Button, Keyboard, Text, TouchableWithoutFeedback, View } from 'react-native';
 
 import { styles } from './styles';
-import { Header, Input, NumberContainer } from '../../Components';
+import { Input, NumberContainer } from '../../Components';
 import { theme } from '../../Constants';
 
-const StartGame = ({ onStartGame }) => {
+const StartGame = ({ onStartGame, onresetGame }) => {
   const [number, setNumber] = useState('');
   const [confirmed, setConfirmed] = useState(false);
   const [selectedNumber, setSelectedNumber] = useState(null);
@@ -31,6 +31,7 @@ const StartGame = ({ onStartGame }) => {
     setNumber('');
     setConfirmed(false);
     setSelectedNumber(null);
+    onresetGame();
   };
 
   const onHandleStartGame = () => {
