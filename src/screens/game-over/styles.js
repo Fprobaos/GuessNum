@@ -1,4 +1,4 @@
-import { StyleSheet } from 'react-native';
+import { StyleSheet, Dimensions } from 'react-native';
 
 import { theme } from '../../Constants';
 
@@ -8,6 +8,19 @@ export const styles = StyleSheet.create({
     backgroundColor: '#fff',
     marginHorizontal: 40,
   },
+  landscapeContainer: {
+    display: 'flex',
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-evenly',
+    marginHorizontal: 10,
+    marginVertical: 20,
+  },
+  imagelandscape: {
+    width: 200,
+    height: 200,
+  },
+
   content: {
     alignItems: 'center',
     justifyContent: 'center',

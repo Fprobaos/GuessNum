@@ -1,14 +1,28 @@
 import { useState } from 'react';
-import { Alert, Button, Keyboard, Text, TouchableWithoutFeedback, View } from 'react-native';
+import {
+  Alert,
+  Button,
+  Keyboard,
+  ScrollView,
+  Text,
+  TouchableWithoutFeedback,
+  View,
+  KeyboardAvoidingView,
+  Platform,
+} from 'react-native';
 
 import { styles } from './styles';
 import { Input, NumberContainer } from '../../Components';
 import { theme } from '../../Constants';
+import UseOrientation from '../../Hooks/UseOrientation';
+
+const isAndroid = Platform.OS === 'android';
 
 const StartGame = ({ onStartGame, onresetGame }) => {
   const [number, setNumber] = useState('');
   const [confirmed, setConfirmed] = useState(false);
   const [selectedNumber, setSelectedNumber] = useState(null);
+  const { isPortrait } = UseOrientation();
 
   const onhandleChangeText = (text) => {
     setNumber(text.replace(/[^0-9]/g, ''));
@@ -40,7 +54,7 @@ const StartGame = ({ onStartGame, onresetGame }) => {
 
   const Confirmed = () =>
     confirmed ? (
-      <View style={styles.confirmedContainer}>
+      <View style={isPortrait ? styles.confirmedContainer : styles.landscapeConfirmedContainer}>
         <Text>Selected Number</Text>
         <NumberContainer number={selectedNumber} onHandleStartGame={onHandleStartGame} />
         <Button title="Start Game" onPress={onHandleStartGame} color={theme.colors.primary} />
@@ -49,20 +63,22 @@ const StartGame = ({ onStartGame, onresetGame }) => {
 
   return (
     <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
-      <View>
-        <Text style={styles.title}>Start Game!</Text>
-        <Input onhandleChangeText={onhandleChangeText} value={number} />
-        <View style={styles.buttonContainer}>
-          <Button title="Reset" color={theme.colors.secondary} onPress={onHandleReset} />
-          <Button
-            title="Confirm"
-            color={theme.colors.secondary}
-            onPress={onHandleConfirm}
-            disabled={number === ''}
-          />
+      <ScrollView style={styles.container}>
+        <View>
+          <Text style={styles.title}>Start Game!</Text>
+          <Input onhandleChangeText={onhandleChangeText} value={number} />
+          <View style={styles.buttonContainer}>
+            <Button title="Reset" color={theme.colors.secondary} onPress={onHandleReset} />
+            <Button
+              title="Confirm"
+              color={theme.colors.secondary}
+              onPress={onHandleConfirm}
+              disabled={number === ''}
+            />
+          </View>
+          <Confirmed number={selectedNumber} />
         </View>
-        <Confirmed number={selectedNumber} />
-      </View>
+      </ScrollView>
     </TouchableWithoutFeedback>
   );
 };

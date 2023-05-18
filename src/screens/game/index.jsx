@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
-import { Alert, Button, Text, View } from 'react-native';
+import { Alert, Button, ScrollView, Text, View } from 'react-native';
 
 import { styles } from './styles';
 import { NumberContainer } from '../../Components';
@@ -53,25 +53,27 @@ const Game = ({ userNumber, onGameOver }) => {
   }, [currentGuess, userNumber, onGameOver]);
 
   return (
-    <View style={styles.container}>
-      <View style={styles.content}>
-        <Text style={styles.title}>Guess the number</Text>
-        <NumberContainer number={currentGuess} />
+    <ScrollView>
+      <View style={styles.container}>
+        <View style={styles.content}>
+          <Text style={styles.title}>Guess the number</Text>
+          <NumberContainer number={currentGuess} />
+        </View>
+        <View style={styles.buttonContainer}>
+          <Button
+            title="Lower"
+            color={theme.colors.primary}
+            onPress={() => onhandleNewGuess('lower')}
+          />
+          <Button
+            title="Greater"
+            color={theme.colors.primary}
+            onPress={() => onhandleNewGuess('greater')}
+          />
+        </View>
+        <Text style={styles.rounds}> Attempts : {rounds}</Text>
       </View>
-      <View style={styles.buttonContainer}>
-        <Button
-          title="Lower"
-          color={theme.colors.primary}
-          onPress={() => onhandleNewGuess('lower')}
-        />
-        <Button
-          title="Greater"
-          color={theme.colors.primary}
-          onPress={() => onhandleNewGuess('greater')}
-        />
-      </View>
-      <Text style={styles.rounds}> Attempts : {rounds}</Text>
-    </View>
+    </ScrollView>
   );
 };
 

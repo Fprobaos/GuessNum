@@ -3,6 +3,9 @@ import { StyleSheet } from 'react-native';
 import { theme } from '../../Constants';
 
 export const styles = StyleSheet.create({
+  KeyboardAvoidingView: {
+    flex: 1,
+  },
   container: {
     flex: 1,
     backgroundColor: '#fff',
@@ -21,6 +24,10 @@ export const styles = StyleSheet.create({
     marginVertical: 10,
     justifyContent: 'center',
     alignItems: 'center',
+  },
+  landscapeConfirmedContainer: {
+    display: 'flex',
+    flexDirection: 'row',
   },
   confirmedTitle: {
     fontSize: 12,
